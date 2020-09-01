@@ -1,6 +1,6 @@
 <template>
-  <div class="input-wrapper">
-    <label :class="floatLabel">{{label}}</label>
+  <div :class="['input-wrapper',input_wrapper_computed_class]">
+    <label :class="floatLabel" :style="labelPositionWidth">{{label}}</label>
     <input
       class="my-input"
       @input="emitInput"
@@ -16,10 +16,20 @@
 export default {
   name: "MyInput",
   props: {
+    //label出现的位置
     labelPosition: {
       type: String,
       default: "left",
     },
+    //当label出现在左侧时，传入宽度
+    labelWidth: {
+      type: String,
+      default: "100px",
+    },
+    disabled: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
@@ -43,10 +53,22 @@ export default {
     floatLabel() {
       return {
         "init-status": true,
-        "show-status": this.labelPosition == "left" && this.isFocus,
         "show-status-top": this.labelPosition == "top" && this.isFocus,
       };
     },
+    labelPositionWidth() {
+      if (this.labelPosition == "left" && this.isFocus) {
+        return `left:-${this.labelWidth};opacity: 1`;
+      } else {
+        return "";
+      }
+    },
+    input_wrapper_computed_class() {
+      console.log(this.disabled,typeof(this.disabled));
+      return {
+        "disabled": this.disabled
+      }
+    }
   },
   methods: {
     focusEvent(e) {
@@ -70,6 +92,11 @@ export default {
 };
 </script>
 <style lang="stylus" scoped>
+.disabled
+  &:hover
+    cursor:not-allowed
+  background-color:#F5F7FA
+  
 .input-wrapper
   width: 100%
   position: relative
@@ -83,7 +110,7 @@ export default {
     background-color: #2196f3
     transform: scaleX(0)
     transition-property: transform
-    transition-duration: 0.5s
+    transition-duration: 0.3s
     transition-timing-function: cubic-bezier(0.23, 1, 0.32, 1)
     transition-delay: 0s
   .input-line
@@ -106,9 +133,6 @@ export default {
     bottom: 5px
     opacity: 0
     transition: all 0.3s ease-out
-  .show-status
-    left: -100px
-    opacity: 1
   .show-status-top
     top: -16px
     opacity: 1

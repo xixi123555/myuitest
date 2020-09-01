@@ -6,14 +6,19 @@
     
     <my-input v-model="myValue" placeholder="姓名" class="AA" />
     <br />
-    <el-input v-model="myValue" placeholder="sssss"></el-input>
-    <mu-text-field v-model="myValue"></mu-text-field>-->
+    <el-input v-model="myValue" placeholder="sssss"></el-input> -->
+    <el-form :model="list">
+      <el-form-item label="ssss" label-width="100px">
+        <el-input v-model="myValue" placeholder="dddddf"></el-input>
+      </el-form-item>
+    </el-form>
+    <mu-text-field v-model="myValue" disabled placeholder="ssdddd"></mu-text-field>
     <el-card style="width:500px;margin-left:400px">
       <my-input v-model="myValue6" placeholder="登录名" class="AA" />
       <br />
       <my-input v-model="myValue5" placeholder="密码" class="AA" />
       <br />
-      <my-input v-model="myValue4" placeholder="验证码" class="AA" />
+      <my-input v-model="myValue4" placeholder="验证码" :disabled="true" labelWidth="50px" class="AA" />
       <br />
     </el-card>
     <el-card style="width:500px;margin-left:400px">
@@ -39,6 +44,8 @@ export default {
   },
   data() {
     return {
+      list:{},
+      myValue: "",
       myValue1: "",
       myValue2: "",
       myValue3: "",

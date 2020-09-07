@@ -1,12 +1,13 @@
 <template>
-  <div :class="['input-wrapper',input_wrapper_computed_class]">
+  <div :class="['input-wrapper']">
     <label :class="floatLabel" :style="labelPositionWidth">{{label}}</label>
     <input
-      class="my-input"
+      :class="['my-input',input_cpmputed_class]"
       @input="emitInput"
       v-bind="$attrs"
       @focus="focusEvent"
       @blur="blurEvent"
+      :disabled="disabled"
     />
     <div class="input-line"></div>
     <div :class="myFocus"></div>
@@ -16,7 +17,7 @@
 export default {
   name: "MyInput",
   props: {
-    //label出现的位置
+    //label出现的位置，默认值是left
     labelPosition: {
       type: String,
       default: "left",
@@ -26,6 +27,7 @@ export default {
       type: String,
       default: "100px",
     },
+    //禁用属性
     disabled: {
       type: Boolean,
       default: false
@@ -63,7 +65,7 @@ export default {
         return "";
       }
     },
-    input_wrapper_computed_class() {
+    input_cpmputed_class() {
       console.log(this.disabled,typeof(this.disabled));
       return {
         "disabled": this.disabled
@@ -93,10 +95,9 @@ export default {
 </script>
 <style lang="stylus" scoped>
 .disabled
+  background-color:#F5F7FA!important
   &:hover
     cursor:not-allowed
-  background-color:#F5F7FA
-  
 .input-wrapper
   width: 100%
   position: relative

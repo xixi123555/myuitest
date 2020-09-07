@@ -16,9 +16,9 @@
     <el-card style="width:500px;margin-left:400px">
       <my-input v-model="myValue6" placeholder="登录名" class="AA" />
       <br />
-      <my-input v-model="myValue5" placeholder="密码" class="AA" />
+      <my-input v-model="myValue5" placeholder="密码" labelWidth="50px" class="AA" />
       <br />
-      <my-input v-model="myValue4" placeholder="验证码" :disabled="true" labelWidth="50px" class="AA" />
+      <my-input v-model="myValue4" placeholder="验证码" :disabled="true"  class="AA" />
       <br />
     </el-card>
     <el-card style="width:500px;margin-left:400px">

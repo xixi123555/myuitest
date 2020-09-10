@@ -12,6 +12,16 @@
         <el-input v-model="myValue" placeholder="dddddf"></el-input>
       </el-form-item>
     </el-form>
+    <my-select placeholder="my-Select"></my-select>
+    <el-select v-model="myValue3" placeholder="">
+      <el-option v-for="itm in [1,2,3,4]" :key="itm" :label="itm"></el-option>
+    </el-select>
+    <select style="width:100px">
+      <option value="sssss">sssss</option>
+      <option value="ssss1">ssss1</option>
+      <option value="ssss2">ssss2</option>
+      <option value="ssss3">ssss3</option>
+    </select>
     <mu-text-field v-model="myValue" disabled placeholder="ssdddd"></mu-text-field>
     <el-card style="width:500px;margin-left:400px">
       <my-input v-model="myValue6" placeholder="登录名" class="AA" />
@@ -35,12 +45,14 @@
 <script>
 import FloatLabel from "./floatLabel";
 import MyInput from "./components/myInput";
+import MySelect from "./components/mySelect"
 
 export default {
   name: "App",
   components: {
     FloatLabel,
     MyInput,
+    MySelect,
   },
   data() {
     return {
